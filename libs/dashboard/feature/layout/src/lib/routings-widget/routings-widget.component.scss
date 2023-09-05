@@ -1,0 +1,39 @@
+ul {
+  list-style-type: none;
+
+  li {
+    width: 100%;
+    border-radius: .25rem;
+    overflow: hidden;
+    
+    a {
+      width: 100%;
+      padding: .5rem;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      color: #3f3f3f;
+      text-decoration: none;
+      text-transform: capitalize;
+      transition: all ease 0.2s;
+      
+      mat-icon {
+        margin-right: .5rem;
+      }
+    }
+    &:hover {
+
+      a {
+        background-color: #757575;
+        color: #fff;
+      }
+    }
+    &.active {
+
+      a {
+        background-color: #757575;
+        color: #fff;
+      }
+    }
+  }
+}

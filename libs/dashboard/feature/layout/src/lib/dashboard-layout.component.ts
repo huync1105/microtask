@@ -1,0 +1,31 @@
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { IMenuItem } from '@mfeng/shared/core/interface';
+
+@Component({
+  selector: 'mfeng-dashboard-layout',
+  templateUrl: './dashboard-layout.component.html',
+  styleUrls: ['./dashboard-layout.component.scss'],
+})
+export class DashboardLayoutComponent implements OnInit {
+  menuItems: IMenuItem[] = [
+    {
+      label: 'todo',
+      icon: 'task',
+      isActive: false,
+      routerLink: '/todo'
+    }
+  ]
+
+  constructor(private _router: Router) {}
+
+  ngOnInit(): void {
+      this.checkItemActive();
+  }
+
+  private checkItemActive() {
+    this.menuItems.forEach(item => {
+      item.isActive = this._router.url.includes(item.routerLink)
+    })
+  }
+}

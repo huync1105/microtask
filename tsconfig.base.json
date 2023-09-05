@@ -14,7 +14,21 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@mfeng/dashboard/feature/layout": [
+        "libs/dashboard/feature/layout/src/index.ts"
+      ],
+      "@mfeng/shared/core/constant": ["libs/shared/core/constant/src/index.ts"],
+      "@mfeng/shared/core/directive": [
+        "libs/shared/core/directive/src/index.ts"
+      ],
+      "@mfeng/shared/core/enum": ["libs/shared/core/enum/src/index.ts"],
+      "@mfeng/shared/core/interface": [
+        "libs/shared/core/interface/src/index.ts"
+      ],
+      "@mfeng/shared/core/pipe": ["libs/shared/core/pipe/src/index.ts"],
+      "@mfeng/shared/service": ["libs/shared/service/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
