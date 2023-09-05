@@ -27,7 +27,11 @@
         "libs/shared/core/interface/src/index.ts"
       ],
       "@mfeng/shared/core/pipe": ["libs/shared/core/pipe/src/index.ts"],
-      "@mfeng/shared/service": ["libs/shared/service/src/index.ts"]
+      "@mfeng/shared/service": ["libs/shared/service/src/index.ts"],
+      "@mfeng/todo/data-access": ["libs/todo/data-access/src/index.ts"],
+      "@mfeng/todo/feature/dialog": ["libs/todo/feature/dialog/src/index.ts"],
+      "@mfeng/todo/feature/layout": ["libs/todo/feature/layout/src/index.ts"],
+      "@mfeng/todo/feature/widget": ["libs/todo/feature/widget/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

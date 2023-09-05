@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Add new task</h1>
+<div mat-dialog-content>
+  <form [formGroup]="todoForm" style="display: flex; flex-direction: column">
+    <mat-form-field appearance="fill" >
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Title" formControlName="title"/>
+    </mat-form-field>
+    <mat-form-field appearance="fill" >
+      <mat-label>Description</mat-label>
+      <input matInput placeholder="Description" formControlName="description"/>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="closeDialog()">Ok</button>
+</div>
