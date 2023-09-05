@@ -1,0 +1,60 @@
+<div class="todo">
+  <div class="todo__container">
+    <!-- header -->
+    <header>
+      <mfeng-time-header></mfeng-time-header>
+    </header>
+
+    <!-- content -->
+    <section style="display: flex;">
+      <div class="btn-container">
+        <button mat-fab extended color="primary" (click)="openAddDialog()">
+          <mat-icon>add</mat-icon>
+          Add
+        </button>
+      </div>
+
+      <div class="content">
+        <mat-tab-group (selectedTabChange)="onChangeTab($event)" animationDuration="200">
+          <mat-tab *ngFor="let tab of [0,1,2]; let i = index" >
+            <ng-template mat-tab-label>
+              <b>{{(i === 0 ? 'All ' : i === 1 ? 'Pending ' : 'Done ')}}</b> 
+              <b style="color: red; margin-left: .25rem;">({{(tasks | filterTask: i).length}})</b>
+            </ng-template>
+            <ng-container *ngTemplateOutlet="tabContent; context: {$implicit: currentTabIndex, index: currentTabIndex}">
+            </ng-container>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+
+    </footer>
+  </div>
+</div>
+
+<ng-template #tabContent let-index>
+  <div class="tab__container">
+    <ng-container>
+      <mat-card *ngFor="let item of tasks | filterTask: index" style="margin-bottom: .5rem;">
+        <mat-card-header>
+          <mat-card-title>{{item.title}}</mat-card-title>
+          <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions align="end">
+          <button 
+            *ngIf="!item.isDone" 
+            mat-raised-button 
+            color="primary"
+            (click)="doneTask(item.id)">Done</button>
+          <button 
+            *ngIf="item.isDone" 
+            mat-raised-button 
+            color="warn" (click)="deleteTask(item.id)">Delete</button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+  </div>
+</ng-template>
