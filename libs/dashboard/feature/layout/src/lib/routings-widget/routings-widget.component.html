@@ -1,0 +1,8 @@
+<ul *ngIf="menuItems && menuItems.length">
+  <li *ngFor="let item of menuItems" [ngClass]="item.isActive ? 'active' : ''">
+    <a [routerLink]="item.routerLink">
+      <mat-icon>{{ item.icon }}</mat-icon>
+      {{ item.label }}
+    </a>
+  </li>
+</ul>

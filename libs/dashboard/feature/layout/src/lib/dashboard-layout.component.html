@@ -1,0 +1,29 @@
+<mat-drawer-container class="dashboard" [hasBackdrop]="true" scrollable>
+  <!-- sidebav -->
+  <mat-drawer #drawer class="dashboard__sidenav" mode="side">
+    <mfeng-routings-widget [menuItems]="menuItems"></mfeng-routings-widget>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <!-- menu -->
+    <div class="dashboard__menu">
+      <mat-toolbar>
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Microtask</span>
+        <span class="dashboard__menu--spacer"></span>
+        <button mat-icon-button>
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon>share</mat-icon>
+        </button>
+      </mat-toolbar>
+    </div>
+
+    <!-- content -->
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+
+</mat-drawer-container>
