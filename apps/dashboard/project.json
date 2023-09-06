@@ -17,7 +17,12 @@
         "tsConfig": "apps/dashboard/tsconfig.app.json",
         "assets": [
           "apps/dashboard/src/favicon.ico",
-          "apps/dashboard/src/assets"
+          "apps/dashboard/src/assets",
+          {
+            "input": "libs/shared/assets/src/lib",
+            "glob": "**/*",
+            "output": "assets"
+          }
         ],
         "styles": [
           "apps/dashboard/src/styles.scss",

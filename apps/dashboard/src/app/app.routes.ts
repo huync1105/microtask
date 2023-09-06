@@ -6,16 +6,21 @@ export const appRoutes: Route[] = [
     path: '',
     component: DashboardLayoutComponent,
     children: [
-      {
-        path: '',
-        redirectTo: 'todo',
-        pathMatch: 'full'
-      },
+      // {
+      //   path: '',
+      //   redirectTo: 'todo',
+      //   pathMatch: 'full',
+      // },
       {
         path: 'todo',
-        loadChildren: () => import('todo/Module')
-          .then((m) => m.RemoteEntryModule)
-      }
+        loadChildren: () =>
+          import('todo/Module').then((m) => m.RemoteEntryModule),
+      },
+      {
+        path: 'weather',
+        loadChildren: () =>
+          import('weather/Module').then((m) => m.RemoteEntryModule),
+      },
     ],
   },
 ];

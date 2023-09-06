@@ -18,6 +18,8 @@
       "@mfeng/dashboard/feature/layout": [
         "libs/dashboard/feature/layout/src/index.ts"
       ],
+      "@mfeng/shared/assets": ["libs/shared/assets/src/index.ts"],
+      "@mfeng/shared/core/class": ["libs/shared/core/class/src/index.ts"],
       "@mfeng/shared/core/constant": ["libs/shared/core/constant/src/index.ts"],
       "@mfeng/shared/core/directive": [
         "libs/shared/core/directive/src/index.ts"
@@ -31,7 +33,14 @@
       "@mfeng/todo/data-access": ["libs/todo/data-access/src/index.ts"],
       "@mfeng/todo/feature/dialog": ["libs/todo/feature/dialog/src/index.ts"],
       "@mfeng/todo/feature/layout": ["libs/todo/feature/layout/src/index.ts"],
-      "@mfeng/todo/feature/widget": ["libs/todo/feature/widget/src/index.ts"]
+      "@mfeng/todo/feature/widget": ["libs/todo/feature/widget/src/index.ts"],
+      "@mfeng/weather/data-access": ["libs/weather/data-access/src/index.ts"],
+      "@mfeng/weather/feature/layout": [
+        "libs/weather/feature/layout/src/index.ts"
+      ],
+      "@mfeng/weather/feature/widget": [
+        "libs/weather/feature/widget/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
