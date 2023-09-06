@@ -1,0 +1,137 @@
+<div class="weather">
+  <div class="weather__search">
+    <mat-form-field
+      appearance="fill"
+      style="width: 100%; max-width: 400px; margin-right: 1rem"
+    >
+      <input matInput placeholder="place..." [formControl]="searchForm" (keyup.enter)="searchLocation()" />
+      <button matSuffix mat-icon-button (click)="searchLocation()">
+        <mat-icon>search</mat-icon>
+      </button>
+      <mat-error>Required!!</mat-error>
+    </mat-form-field>
+
+    <ng-container *ngIf="isSearchBoxShown">
+      <ng-container
+        *ngTemplateOutlet="
+          searchResults;
+          context: {
+            locations: currentLocations
+          }
+        "
+      ></ng-container>
+    </ng-container>
+  </div>
+
+  <div class="weather__results">
+    <h3 *ngIf="foundLocation">{{ foundLocation.name }}</h3>
+
+    <!-- daily -->
+    <div class="weather__results--data">
+      <div class="chip-container">
+        <h3>Daily settings</h3>
+        <mat-chip-listbox [multiple]="true" (change)="changeOptionSetting($event)">
+          <mat-chip-option *ngFor="let item of dailyOptions" [selected]="item.isSelected">{{ item.value }}</mat-chip-option>
+        </mat-chip-listbox>
+      </div>
+
+      <mat-spinner *ngIf="isLoading" color="accent"></mat-spinner>
+      <div *ngIf="!forecast && !isLoading else availableData" class="empty-img">
+        <img src="assets/images/empty_data.svg" alt="empty-data">
+      </div>
+      <ng-template #availableData>
+        <div *ngIf="forecast && forecast.dailyObjs && forecast.dailyObjs.length" class="card__container">
+          <ng-container *ngFor="let item of forecast.dailyObjs;">
+            <mat-card class="daily">
+              <mat-card-header style="margin-bottom: 1rem;">
+                <mat-card-title>{{ item.time.value | date: 'EE, d MMMM' : 'vi' }}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="daily__content">
+                <div *ngFor="let keyValue of item | keyvalue" style="display: flex; margin-bottom: .5rem;">
+                  <h3>
+                    {{ keyValue.key }}
+                  </h3>
+                  <ng-container *ngIf="keyValue.key === 'sunrise' || keyValue.key === 'sunset'; else normal">
+                    <span>{{ keyValue.value.value | date: 'HH:MM' }}</span>
+                  </ng-container>
+                  <ng-template #normal>
+                    <span>{{ keyValue.value.value }} {{ keyValue.value.unit }}</span>
+                  </ng-template>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </ng-container>
+        </div>
+      </ng-template>
+    </div>
+
+    <!-- hourly -->
+    <div class="weather__results--data">
+      <div class="chip-container">
+        <h3>Hourly settings</h3>
+        <mat-chip-listbox [multiple]="true" (change)="changeOptionSetting($event, false)">
+          <mat-chip-option *ngFor="let item of hourlyOptions"  [selected]="item.isSelected">{{ item.value }}</mat-chip-option>
+        </mat-chip-listbox>
+      </div>
+
+      <mat-spinner *ngIf="isLoading" color="accent"></mat-spinner>
+      <div *ngIf="!forecast && !isLoading else availableHourlyData" class="empty-img">
+        <img src="assets/images/empty_data.svg" alt="empty-data">
+      </div>
+      <ng-template #availableHourlyData>
+        <div *ngIf="forecast && forecast.hourlyObjs && forecast.hourlyObjs.length" class="card__container">
+          <ng-container *ngFor="let item of forecast.hourlyObjs;">
+            <mat-card class="daily">
+              <mat-card-header style="margin-bottom: 1rem;">
+                <mat-card-title>{{ item.time.value | date: 'EE, d MMMM, HH:MM' : 'vi' }}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="daily__content">
+                <div *ngFor="let keyValue of item | keyvalue" style="display: flex; margin-bottom: .5rem;">
+                  <h3>
+                    {{ keyValue.key }}
+                  </h3>
+                  <ng-container *ngIf="keyValue.key === 'time'; else normal">
+                    <span>{{ keyValue.value.value | date: 'HH:MM' }}</span>
+                  </ng-container>
+                  <ng-template #normal>
+                    <span>{{ keyValue.value.value }} {{ keyValue.value.unit }}</span>
+                  </ng-template>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </ng-container>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<ng-template #searchResults let-locations="locations">
+  <mat-card class="search-box">
+    <mat-card-header class="search-box__header">
+      <button mat-icon-button (click)="isSearchBoxShown = !isSearchBoxShown">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-card-header>
+    <mat-card-content class="search-box__content">
+      <div
+        *ngFor="let item of locations"
+        class="search-box__content--item"
+        (click)="getWeatherStatus(item)"
+      >
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.country }}, {{ item.admin1 }}</p>
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-progress-bar
+        *ngIf="!locations"
+        mode="indeterminate"
+      ></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+</ng-template>
+
+<ng-template #emptyData>
+  <div class="empty"></div>
+</ng-template>

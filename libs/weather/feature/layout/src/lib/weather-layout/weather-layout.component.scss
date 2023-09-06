@@ -1,0 +1,139 @@
+.weather {
+  position: relative;
+  padding: 1rem;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #0b263e;
+
+  &__search {
+    position: relative;
+
+    .search-box {
+      position: absolute;
+      z-index: 1;
+      top: 4rem;
+      left: 0;
+      width: 100%;
+      max-width: 400px;
+      background-color: #fff;
+      box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.3);
+
+      &__header {
+        padding: 0.5rem;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      &__content {
+        max-height: 400px;
+        overflow: auto;
+
+        &--item {
+          width: 100%;
+          padding: 1rem;
+          border-bottom: 1px solid #e0e0e0;
+          cursor: pointer;
+
+          h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin-right: 0.5rem;
+          }
+          p {
+            color: #9e9e9e;
+            font-size: 0.75em;
+          }
+          &:hover {
+            background-color: #d4e3e9;
+          }
+        }
+      }
+    }
+  }
+  &__results {
+    width: 100%;
+    height: 100%;
+
+    &--empty {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 100%;
+        max-width: 600px;
+      }
+    }
+    h3 {
+      font-size: 1.5em;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    &--data {
+      width: 100%;
+      padding: 1rem 0;
+      display: flex;
+      flex-direction: column;
+
+      .empty-img {
+        height: 400px;
+
+        img {
+          height: 100%;
+        }
+      }
+      .chip-container {
+        margin-bottom: 1rem;
+        margin-right: 2rem;
+        max-width: 1000px;
+        display: flex;
+        flex-direction: column;
+      }
+      .card__container {
+        display: flex;
+        width: 100%;
+        overflow: auto;
+        padding: .5rem 0;
+
+        .daily {
+          min-width: 280px;
+          margin-right: 1rem;
+
+          &__content {
+            h3 {
+              color: #757070;
+              font-size: 1em;
+              margin-right: 0.5rem;
+              margin-bottom: 0;
+            }
+            span {
+              color: #21a5f1;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Webkit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the track */
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the thumb */
+  border-radius: 6px; /* Rounded corners of the thumb */
+}

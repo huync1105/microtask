@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { IMenuItem } from '@mfeng/shared/core/interface';
+import { menuItems } from '@mfeng/shared/core/constant';
 
 @Component({
   selector: 'mfeng-dashboard-layout',
@@ -8,19 +8,14 @@ import { IMenuItem } from '@mfeng/shared/core/interface';
   styleUrls: ['./dashboard-layout.component.scss'],
 })
 export class DashboardLayoutComponent implements OnInit {
-  menuItems: IMenuItem[] = [
-    {
-      label: 'todo',
-      icon: 'task',
-      isActive: false,
-      routerLink: '/todo'
-    }
-  ]
+  menuItems = menuItems;
 
   constructor(private _router: Router) {}
 
   ngOnInit(): void {
+    this._router.events.subscribe(res => {
       this.checkItemActive();
+    });
   }
 
   private checkItemActive() {
